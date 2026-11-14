@@ -1,26 +1,26 @@
-# Tu primera API en 50 minutos
+# Your First API in 50 Minutes
 
-Material de la clase invitada **"Integraciones: cómo se hablan los sistemas"**, Facultad de Ingeniería, UNAM · sábado 14 de noviembre de 2026.
+Material for the guest class **"Integrations: how systems talk to each other"**, School of Engineering, UNAM · Saturday, November 14, 2026.
 
-Expositor: Bryan Rodríguez Abarca, Technical Product Manager.
+Speaker: Bryan Rodríguez Abarca, Technical Product Manager.
 
-## Qué hay aquí
+## What is here
 
-| Archivo | Para qué sirve |
+| File | What it is for |
 | --- | --- |
-| [guia-de-actividad.md](guia-de-actividad.md) | Los ejercicios, lámina por lámina, con las URLs listas para copiar. Al final: repaso, el mismo ejercicio en código, glosario y respuestas. |
-| [slides.pdf](slides.pdf) | Las 14 láminas de la clase. |
+| [activity-guide.md](activity-guide.md) | The exercises, slide by slide, with the URLs ready to copy. At the end: review questions, the same exercise in code, a glossary and the answers. |
+| [slides.pdf](slides.pdf) | The 14 slides of the class. |
 
-## Durante la clase
+## During the class
 
-Abre la [guía de actividad](guia-de-actividad.md) y síguela junto con las láminas.
+Open the [activity guide](activity-guide.md) and follow it with the slides.
 
-Trae laptop: los retos 2 a 5 se hacen en [Hoppscotch](https://hoppscotch.io), desde el navegador, sin instalar nada ni crear cuentas. Con celular puedes hacer el Reto 1 y verificar con GET lo que haga tu equipo.
+Bring a laptop: you do challenges 2 to 5 in [Hoppscotch](https://hoppscotch.io), in the browser. Do not install anything and do not create accounts. With a phone you can do Challenge 1 and use GET to check what your team does.
 
-## Después de la clase
+## After the class
 
-La sección "Después de clase" de la guía trae siete preguntas de repaso, el reto para casa en Python y cómo convertirlo en un proyecto para tu perfil.
+The "After class" section of the guide has seven review questions, the homework in Python, and how to turn it into a project for your profile.
 
-## Aviso
+## Note
 
-Las URL de webhook.site son públicas. No envíes datos personales reales.
+webhook.site URLs are public. Do not send real personal data.
