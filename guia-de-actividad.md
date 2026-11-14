@@ -14,6 +14,21 @@ Tip: mantén presionada una URL para copiarla.
 2. Leer una petición y su respuesta: método, URL, headers, body, código de estado.
 3. Consumir una API real y conectar dos sistemas con un webhook.
 
+## Formas de integrar sistemas
+
+Integrar sistemas se puede hacer de varias formas. Por tiempo, hoy practicamos la más usada (API REST) y cerramos con webhooks. Las demás existen y te van a tocar en el trabajo.
+
+| Forma | Cómo funciona | Dónde lo verás |
+| --- | --- | --- |
+| **API REST (hoy)** | Pides por HTTP a una URL y te contestan en JSON | Casi toda API web moderna: pagos, mapas, clima |
+| **Webhook (hoy)** | El otro sistema te avisa cuando pasa algo | Pagos cobrados, envíos, notificaciones |
+| API SOAP | Mensajes XML con un contrato estricto (WSDL) | Bancos, seguros, gobierno, facturación (CFDI) |
+| GraphQL | Una sola URL donde pides solo los campos que quieres | Apps móviles y sitios web |
+| gRPC | Llamadas binarias muy rápidas | Microservicios dentro de una empresa |
+| Sin API: archivos y colas | Un sistema deja un archivo o un mensaje; el otro lo recoge después | Nómina, conciliaciones, procesos por lotes |
+
+**Idea:** cambia el formato, no el fondo. En todas hay una petición, una respuesta y un contrato.
+
 ## Reto 1 — Tu primer GET
 
 Tiempo: 4 min
@@ -370,6 +385,7 @@ print(aviso.status_code)
 
 **Temas para investigar**
 
+- SOAP, GraphQL y gRPC: los otros estilos de API
 - Polling vs eventos
 - Síncrono vs asíncrono
 - Reintentos e idempotencia
