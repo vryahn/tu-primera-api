@@ -31,6 +31,21 @@ Integrar sistemas se puede hacer de varias formas. Por tiempo, hoy practicamos l
 
 **Ojo:** que una API conteste XML no la hace SOAP. Lo que define a SOAP es el sobre (`Envelope`) y el contrato WSDL; una API REST también puede usar XML.
 
+## Cómo se arma una petición HTTP
+
+HTTP es el protocolo: el idioma en que se hablan tu navegador y los servidores. Toda petición tiene cuatro partes.
+
+| Elemento | Qué es | En el restaurante |
+| --- | --- | --- |
+| **Método** | La acción que pides: GET lee, POST crea, PATCH cambia, DELETE borra | Ver la carta, ordenar, cambiar tu orden, cancelarla |
+| **URL** | A quién le pides y qué: servidor + recurso | Qué restaurante y qué platillo |
+| **Headers** | Datos sobre la petición: el formato y tu autorización (quién eres) | Tu reservación y cómo lo quieres |
+| **Body** | Los datos que envías, solo al crear o cambiar | El detalle de tu orden |
+
+El servidor responde con tres cosas: **código de estado** (200, 404…), **headers** y **body**.
+
+En el Reto 1 usas el método **GET**, que solo lee. Es lo único que hace el navegador cuando pegas una URL. Lo demás lo verás reto por reto.
+
 ## Reto 1 — Tu primer GET
 
 Tiempo: 4 min

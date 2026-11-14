@@ -9,7 +9,7 @@ Expositor: Bryan Rodríguez Abarca, Technical Product Manager.
 | Archivo | Para qué sirve |
 | --- | --- |
 | [guia-de-actividad.md](guia-de-actividad.md) | Los 6 retos paso a paso, con las URLs listas para copiar, glosario, preguntas de repaso y respuestas. |
-| [slides.pdf](slides.pdf) | Las 21 láminas de la clase. |
+| [slides.pdf](slides.pdf) | Las 22 láminas de la clase. |
 | [integracion.py](integracion.py) | El reto para casa hecho en código: lee el clima de una API y le avisa a otro sistema con un webhook. |
 
 ## Durante la clase
