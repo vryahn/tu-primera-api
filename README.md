@@ -8,36 +8,18 @@ Expositor: Bryan Rodríguez Abarca, Technical Product Manager.
 
 | Archivo | Para qué sirve |
 | --- | --- |
-| [guia-de-actividad.md](guia-de-actividad.md) | Los 6 retos paso a paso (URL y parámetros, métodos, body, headers, seguridad, webhook), con las URLs listas para copiar, glosario, preguntas de repaso y respuestas. |
-| [slides.pdf](slides.pdf) | Las 15 láminas de la clase. |
-| [integracion.py](integracion.py) | El reto para casa hecho en código: lee el clima de una API y le avisa a otro sistema con un webhook. |
+| [guia-de-actividad.md](guia-de-actividad.md) | Los ejercicios, lámina por lámina, con las URLs listas para copiar. Al final: repaso, el mismo ejercicio en código, glosario y respuestas. |
+| [slides.pdf](slides.pdf) | Las 14 láminas de la clase. |
 
 ## Durante la clase
 
-Abre la [guía de actividad](guia-de-actividad.md) en tu laptop o celular. Trae laptop: los retos 2 a 5 se hacen en [Hoppscotch](https://hoppscotch.io), desde el navegador. No instales nada ni crees cuentas. Con celular puedes hacer el Reto 1 y verificar con GET lo que haga tu equipo.
+Abre la [guía de actividad](guia-de-actividad.md) y síguela junto con las láminas.
+
+Trae laptop: los retos 2 a 5 se hacen en [Hoppscotch](https://hoppscotch.io), desde el navegador, sin instalar nada ni crear cuentas. Con celular puedes hacer el Reto 1 y verificar con GET lo que haga tu equipo.
 
 ## Después de la clase
 
-1. Contesta las siete preguntas de "Comprueba lo que aprendiste" sin ver la guía.
-2. Corre el script:
-
-```bash
-pip install requests
-```
-
-```bash
-python integracion.py
-```
-
-Antes, abre https://webhook.site, copia tu URL única y pégala en `WEBHOOK_URL` dentro del script. Vas a ver llegar la petición en tiempo real.
-
-3. Hazlo tuyo: cambia la ciudad, usa otra API de [public-apis](https://github.com/public-apis/public-apis), maneja el caso en que la API responda un error. Súbelo a tu GitHub con un README que explique qué hace: ese ya es un proyecto para tu perfil.
-
-## Lo que deberías poder explicar
-
-- Qué es una API y qué es una integración.
-- Cómo se lee una petición y su respuesta: método, URL, headers, body, código de estado.
-- La diferencia entre consultar una API y recibir un webhook.
+La sección "Después de clase" de la guía trae siete preguntas de repaso, el reto para casa en Python y cómo convertirlo en un proyecto para tu perfil.
 
 ## Aviso
 

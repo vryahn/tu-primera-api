@@ -4,59 +4,13 @@ Sábado 14 de noviembre de 2026 · Expositor: Bryan Rodríguez Abarca, Technical
 
 ## Antes de empezar
 
-Solo necesitas un navegador (de tu laptop o de tu celular). No instales nada y no crees cuentas.
+Trae laptop: los retos 2 a 5 se hacen en Hoppscotch, una página web. No instales nada y no crees cuentas. Con celular puedes hacer el Reto 1 y verificar con GET lo que haga tu equipo.
 
 Tip: mantén presionada una URL para copiarla.
 
-## Hoy vas a poder…
+Esta guía sigue las láminas de la clase. Solo aparecen las láminas que tienen ejercicio: de la 7 a la 12, y el boleto de salida de la 14.
 
-1. Explicar qué es una API y qué es una integración.
-2. Leer una petición y su respuesta: método, URL, headers, body, código de estado.
-3. Consumir una API real y conectar dos sistemas con un webhook.
-
-## Formas de integrar sistemas
-
-Integrar sistemas se puede hacer de varias formas. Por tiempo, hoy practicamos la más usada (API REST) y cerramos con webhooks. Las demás existen y te van a tocar en el trabajo.
-
-| Forma | Cómo funciona | Dónde lo verás |
-| --- | --- | --- |
-| **API REST (hoy)** | Cada recurso tiene su URL y pides con métodos HTTP. Casi siempre contesta JSON, a veces XML | Casi toda API web moderna: pagos, mapas, clima |
-| **Webhook (hoy)** | El otro sistema te avisa cuando pasa algo | Pagos cobrados, envíos, notificaciones |
-| API SOAP | XML dentro de un sobre (Envelope), con un contrato estricto (WSDL) | Bancos, seguros, gobierno, facturación (CFDI) |
-| GraphQL | Una sola URL donde pides solo los campos que quieres | Apps móviles y sitios web |
-| gRPC | Llamadas binarias muy rápidas | Microservicios dentro de una empresa |
-| Sin API: archivos y colas | Un sistema deja un archivo o un mensaje; el otro lo recoge después | Nómina, conciliaciones, procesos por lotes |
-
-**Idea:** cambia el formato, no el fondo. En todas hay una petición, una respuesta y un contrato.
-
-**Ojo:** que una API conteste XML no la hace SOAP. Lo que define a SOAP es el sobre (`Envelope`) y el contrato WSDL; una API REST también puede usar XML.
-
-## Cómo se arma una petición HTTP
-
-HTTP es el protocolo: el idioma en que se hablan tu navegador y los servidores. Toda petición tiene cuatro partes, y hoy vas a practicar una por una.
-
-| Elemento | Qué es | En el restaurante | Lo practicas en |
-| --- | --- | --- | --- |
-| **URL** | A quién le pides y qué: servidor + ruta + parámetros | Qué restaurante y qué platillo | Reto 1 |
-| **Método** | La acción que pides: leer, crear, cambiar, borrar | Ver la carta, ordenar, cambiar tu orden, cancelarla | Reto 2 |
-| **Body** | Los datos que viajan | El detalle de tu orden | Reto 3 |
-| **Headers** | Datos sobre la petición: el formato y quién eres | La etiqueta del pedido y tu reservación | Retos 4 y 5 |
-
-El servidor siempre responde con tres cosas: **código de estado**, **headers** y **body**.
-
-| Código | Significa |
-| --- | --- |
-| **200** | Todo bien |
-| **201** | Creado |
-| **400** | Pediste mal |
-| **401** | No te identificaste |
-| **404** | No existe |
-| **415** | No entiendo ese formato |
-| **500** | Falló el servidor |
-
-Regla rápida: **2xx** funcionó · **4xx** el error está en tu petición · **5xx** el error está en el servidor.
-
-## Reto 1 — URL y parámetros
+## Lámina 7 · Reto 1 — URL y parámetros
 
 Tiempo: 7 min · Solo navegador (laptop o celular)
 
@@ -125,7 +79,7 @@ En laptop: F12 → pestaña Network → recarga, para ver el código de estado.
 
 (La respuesta de la predicción está al final, en "Respuestas".)
 
-## Reto 2 — Métodos
+## Lámina 8 · Reto 2 — Métodos
 
 Tiempo: 10 min · Laptop, con Hoppscotch · Si traes celular, haz equipo con alguien con laptop: tú verificas los cambios con GET desde tu navegador.
 
@@ -188,7 +142,7 @@ Repite el GET del paso 2. **Deberías ver:** el nombre nuevo, y lo demás intact
 
 **Idea:** misma URL, cuatro métodos, cuatro efectos distintos. La URL dice *a qué*; el método dice *qué hacerle*.
 
-## Reto 3 — Body
+## Lámina 9 · Reto 3 — Body
 
 Tiempo: 4 min · Laptop, con Hoppscotch
 
@@ -214,7 +168,7 @@ El body son los datos que viajan. Tú lo envías con POST, PUT y PATCH; el servi
 
 (Respuestas al final.)
 
-## Reto 4 — Headers
+## Lámina 10 · Reto 4 — Headers
 
 Tiempo: 4 min
 
@@ -242,7 +196,7 @@ https://httpbin.org/headers
 
 (Respuesta al final.)
 
-## Reto 5 — Seguridad: ¿quién eres?
+## Lámina 11 · Reto 5 — Seguridad: ¿quién eres?
 
 Tiempo: 5 min
 
@@ -272,7 +226,7 @@ En laptop: F12 → pestaña Network. En celular verás una página en blanco o u
 
 (Respuesta al final.)
 
-## Reto 6 — Integra dos sistemas con un webhook
+## Lámina 12 · Reto 6 — Integra dos sistemas con un webhook
 
 Tiempo: 7 min, en parejas
 
@@ -308,47 +262,15 @@ envía un POST con body JSON `{"alumno":"Ana","materia":"Integraciones"}` a la U
 
 **API: yo pregunto. Webhook: tú me avisas.**
 
+## Lámina 14 · Boleto de salida
+
+Escribe una frase: describe una integración que usaste hoy sin darte cuenta, y qué dos sistemas se hablaron.
+
+# Después de clase
+
 ## Reto bonus / para casa
 
 Encadena dos APIs a mano: toma la temperatura de Open-Meteo y envíala al webhook de tu pareja como `?ciudad=...&temp=...`. Acabas de hacer, manualmente, lo que hace una integración automatizada.
-
-## Mini glosario
-
-- **API:** el contrato con el que un sistema le pide algo a otro.
-- **Integración:** dos o más sistemas trabajando juntos usando esos contratos.
-- **Endpoint:** la dirección (URL) concreta a la que le pides algo.
-- **Request:** la petición que envías.
-- **Response:** la respuesta que te regresa el servidor.
-- **JSON:** formato de texto para datos, con pares `"clave": valor`.
-- **Código de estado:** número que dice cómo salió la petición (200, 404…).
-- **Header:** metadato de la petición o respuesta (quién eres, qué formato).
-- **Body:** el contenido de los datos que se envían o se reciben.
-- **Método:** la acción que pides: GET, POST, PUT, PATCH, DELETE.
-- **Parámetro:** dato que ajusta lo que pides. De ruta: `/character/2`. De consulta: `?name=rick`.
-- **Token:** credencial que demuestra quién eres; viaja en el header `Authorization`.
-- **Webhook:** aviso que un sistema te manda cuando pasa algo, sin que preguntes.
-- **Idempotencia:** que repetir la misma petición no repita el efecto (reintentar un cobro no cobra dos veces).
-
-## Si algo falla
-
-1. Revisa que la URL esté completa, sin espacios ni letras de más.
-2. Recarga la página o prueba otra vez.
-3. Revisa tu conexión al Wi-Fi.
-4. Pega la URL en una pestaña nueva, o pídele a tu vecino que la pruebe.
-
-**Plan B si webhook.site falla:** abre esta URL, que devuelve en `args` lo que enviaste:
-
-```
-https://httpbin.org/get?nombre=Ana&mensaje=hola
-```
-
-**Plan B si api.restful-api.dev no responde** (Retos 2 y 3): usa `https://jsonplaceholder.typicode.com/posts` con los mismos métodos. Ojo: esa API simula los cambios pero no los guarda, así que el GET final no mostrará el 404.
-
-**Plan B si httpbin.org no carga** (Retos 4 y 5): cambia `httpbin.org` por `httpbingo.org` en la misma URL. Las rutas `/headers`, `/bearer` y `/get` funcionan igual.
-
-## Boleto de salida
-
-Escribe una frase: describe una integración que usaste hoy sin darte cuenta, y qué dos sistemas se hablaron.
 
 ## Comprueba lo que aprendiste
 
@@ -424,6 +346,56 @@ print(aviso.status_code)
 - Reintentos e idempotencia
 - OpenAPI (Swagger)
 - Plataformas iPaaS (Zapier, Make, n8n, MuleSoft)
+
+# Referencia
+
+## Códigos de estado
+
+| Código | Significa |
+| --- | --- |
+| **200** | Todo bien |
+| **201** | Creado |
+| **400** | Pediste mal |
+| **401** | No te identificaste |
+| **404** | No existe |
+| **415** | No entiendo ese formato |
+| **500** | Falló el servidor |
+
+Regla rápida: **2xx** funcionó · **4xx** el error está en tu petición · **5xx** el error está en el servidor.
+
+## Mini glosario
+
+- **API:** el contrato con el que un sistema le pide algo a otro.
+- **Integración:** dos o más sistemas trabajando juntos usando esos contratos.
+- **Endpoint:** la dirección (URL) concreta a la que le pides algo.
+- **Request:** la petición que envías.
+- **Response:** la respuesta que te regresa el servidor.
+- **JSON:** formato de texto para datos, con pares `"clave": valor`.
+- **Código de estado:** número que dice cómo salió la petición (200, 404…).
+- **Header:** metadato de la petición o respuesta (quién eres, qué formato).
+- **Body:** el contenido de los datos que se envían o se reciben.
+- **Método:** la acción que pides: GET, POST, PUT, PATCH, DELETE.
+- **Parámetro:** dato que ajusta lo que pides. De ruta: `/character/2`. De consulta: `?name=rick`.
+- **Token:** credencial que demuestra quién eres; viaja en el header `Authorization`.
+- **Webhook:** aviso que un sistema te manda cuando pasa algo, sin que preguntes.
+- **Idempotencia:** que repetir la misma petición no repita el efecto (reintentar un cobro no cobra dos veces).
+
+## Si algo falla
+
+1. Revisa que la URL esté completa, sin espacios ni letras de más.
+2. Recarga la página o prueba otra vez.
+3. Revisa tu conexión al Wi-Fi.
+4. Pega la URL en una pestaña nueva, o pídele a tu vecino que la pruebe.
+
+**Plan B si webhook.site falla:** abre esta URL, que devuelve en `args` lo que enviaste:
+
+```
+https://httpbin.org/get?nombre=Ana&mensaje=hola
+```
+
+**Plan B si api.restful-api.dev no responde** (Retos 2 y 3): usa `https://jsonplaceholder.typicode.com/posts` con los mismos métodos. Ojo: esa API simula los cambios pero no los guarda, así que el GET final no mostrará el 404.
+
+**Plan B si httpbin.org no carga** (Retos 4 y 5): cambia `httpbin.org` por `httpbingo.org` en la misma URL. Las rutas `/headers`, `/bearer` y `/get` funcionan igual.
 
 ## Respuestas — no leas esto antes de intentar
 
