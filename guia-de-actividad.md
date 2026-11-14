@@ -37,13 +37,19 @@ https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=43s
 
 **Deberías ver:** el mismo video, empezando en otro momento. El signo `?` abre los parámetros y `&` los separa.
 
-**Parte B: lo que dice un enlace de anuncio.** No lo abras, solo léelo:
+**Parte B: un enlace de anuncio.** No lo abras, solo léelo y completa la tabla.
 
 ```
 https://tienda.ejemplo/tenis?utm_source=facebook&utm_campaign=buen_fin&fbclid=IwAR0x9
 ```
 
-¿De qué red social viene quien dio clic? ¿De qué campaña? Esos parámetros no cambian la página: le avisan a la tienda de dónde llegaste. Cuando compartes un video desde la app de YouTube pasa igual: el enlace lleva un `si=…` que identifica quién lo compartió.
+| Parte | En este enlace | Qué dice |
+| --- | --- | --- |
+| Servidor |  |  |
+| Ruta (endpoint) |  |  |
+| Parámetro `utm_source` | `facebook` |  |
+| Parámetro `utm_campaign` | `buen_fin` |  |
+| Parámetro `fbclid` | `IwAR0x9` |  |
 
 **Parte C: lo mismo, en una API.**
 
@@ -65,9 +71,9 @@ https://rickandmortyapi.com/api/character/?name=rick&status=alive
 
 **Deberías ver:** un personaje distinto por cada número; y con los filtros, una lista `results` solo con los que cumplen.
 
-**Parte D: rómpela.**
+**Parte D: predice.**
 
-9. Antes de abrirla, predice: ¿qué contesta el servidor si pides un personaje que no existe?
+9. Antes de abrirla, predice: ¿qué va a contestar el servidor?
 
 ```
 https://rickandmortyapi.com/api/character/99999
@@ -157,7 +163,12 @@ El body son los datos que viajan. Tú lo envías con POST, PUT y PATCH; el servi
 { "name": "Solo me queda el nombre" }
 ```
 
-3. Manda ese PUT a `https://api.restful-api.dev/objects/TU_ID` y revisa la respuesta.
+3. Manda ese PUT a la URL con tu `id` y revisa la respuesta:
+
+```
+https://api.restful-api.dev/objects/TU_ID
+```
+
 4. Ahora rompe el body: manda un POST con este JSON, al que le faltan las llaves de cierre.
 
 ```
@@ -239,7 +250,12 @@ https://webhook.site
 ```
 
 2. Comparte tu URL con tu pareja (chat, o dictada).
-3. Tu pareja abre en su navegador `TU_URL?nombre=Ana&mensaje=hola` (con datos inventados).
+3. Tu pareja abre en su navegador tu URL con esto al final (con datos inventados):
+
+```
+?nombre=Ana&mensaje=hola
+```
+
 4. Mira tu pantalla de webhook.site.
 
 **Deberías ver:** una petición nueva en la lista, en tiempo real, con `nombre` y `mensaje` y sus headers.
