@@ -33,230 +33,244 @@ Integrar sistemas se puede hacer de varias formas. Por tiempo, hoy practicamos l
 
 ## Cómo se arma una petición HTTP
 
-HTTP es el protocolo: el idioma en que se hablan tu navegador y los servidores. Toda petición tiene cuatro partes.
+HTTP es el protocolo: el idioma en que se hablan tu navegador y los servidores. Toda petición tiene cuatro partes, y hoy vas a practicar una por una.
 
-| Elemento | Qué es | En el restaurante |
-| --- | --- | --- |
-| **Método** | La acción que pides: GET lee, POST crea, PATCH cambia, DELETE borra | Ver la carta, ordenar, cambiar tu orden, cancelarla |
-| **URL** | A quién le pides y qué: servidor + recurso | Qué restaurante y qué platillo |
-| **Headers** | Datos sobre la petición: el formato y tu autorización (quién eres) | Tu reservación y cómo lo quieres |
-| **Body** | Los datos que envías, solo al crear o cambiar | El detalle de tu orden |
+| Elemento | Qué es | En el restaurante | Lo practicas en |
+| --- | --- | --- | --- |
+| **URL** | A quién le pides y qué: servidor + ruta + parámetros | Qué restaurante y qué platillo | Reto 1 |
+| **Método** | La acción que pides: leer, crear, cambiar, borrar | Ver la carta, ordenar, cambiar tu orden, cancelarla | Reto 2 |
+| **Body** | Los datos que viajan | El detalle de tu orden | Reto 3 |
+| **Headers** | Datos sobre la petición: el formato y quién eres | La etiqueta del pedido y tu reservación | Retos 4 y 5 |
 
-El servidor responde con tres cosas: **código de estado** (200, 404…), **headers** y **body**.
-
-En el Reto 1 usas el método **GET**, que solo lee. Es lo único que hace el navegador cuando pegas una URL. Lo demás lo verás reto por reto.
-
-## Reto 1 — Tu primer GET
-
-Tiempo: 4 min
-
-1. Abre tu navegador.
-2. Pega esta URL en la barra y presiona Enter:
-
-```
-https://dog.ceo/api/breeds/image/random
-```
-
-3. Ahora pega esta otra:
-
-```
-https://jsonplaceholder.typicode.com/posts/1
-```
-
-**Deberías ver**
-
-- En la primera: `{"message":"https://images.dog.ceo/…","status":"success"}`. Abre la URL de `message` y recarga: la foto cambia.
-- En la segunda: un JSON con `userId`, `id`, `title`, `body`.
-
-**Idea:** son datos para programas, no para personas.
-
-## Lo que acabas de hacer
-
-Request (lo que envió tu navegador):
-
-```
-GET /posts/1                      ← método + endpoint
-Host: jsonplaceholder.typicode.com ← servidor
-Accept: application/json           ← header: qué formato quiero
-(sin body: un GET solo pide)
-```
-
-Response (lo que contestó el servidor):
-
-```
-200 OK                             ← código de estado
-Content-Type: application/json     ← header: qué formato te mando
-{ "userId": 1, "id": 1, "title": "…", "body": "…" }  ← body en JSON
-```
-
-**Cómo leer un JSON:** llaves `{ }` = un objeto; cada línea es `"clave": valor`; corchetes `[ ]` = una lista de objetos.
-
-## Reto 2 — Parámetros
-
-Tiempo: 5 min
-
-1. Parámetro de ruta: cambia `/posts/1` por `/posts/2`:
-
-```
-https://jsonplaceholder.typicode.com/posts/2
-```
-
-2. Parámetro de consulta:
-
-```
-https://jsonplaceholder.typicode.com/posts?userId=1
-```
-
-3. API real, clima de CDMX:
-
-```
-https://api.open-meteo.com/v1/forecast?latitude=19.43&longitude=-99.13&current_weather=true
-```
-
-4. Cambia la latitud y la longitud por las de tu ciudad.
-
-¿No te sabes las coordenadas? Usa estas (latitud, longitud): Guadalajara `20.67`, `-103.35` · Monterrey `25.69`, `-100.32` · Puebla `19.04`, `-98.21` · Mérida `20.97`, `-89.62`. Van con punto decimal, no con coma.
-
-**Deberías ver:** otro post; una lista `[ … ]` de posts, todos con `"userId": 1`; un bloque `current_weather` con `temperature`.
-
-**Idea:** la misma API contesta distinto según lo que le pidas.
-
-## Códigos de estado
-
-Tres familias:
-
-- **2xx**: funcionó.
-- **4xx**: el error está en tu petición.
-- **5xx**: el error está en el servidor.
-
-Los cuatro que verás hoy:
+El servidor siempre responde con tres cosas: **código de estado**, **headers** y **body**.
 
 | Código | Significa |
 | --- | --- |
 | **200** | Todo bien |
 | **201** | Creado |
-| **401** | Sin permiso |
+| **400** | Pediste mal |
+| **401** | No te identificaste |
 | **404** | No existe |
+| **415** | No entiendo ese formato |
+| **500** | Falló el servidor |
 
-Otros para reconocer: 400 pediste mal · 403 prohibido · 429 demasiadas peticiones · 500 falló el servidor.
+Regla rápida: **2xx** funcionó · **4xx** el error está en tu petición · **5xx** el error está en el servidor.
 
-## Reto 3 — Rómpela a propósito
+## Reto 1 — URL y parámetros
 
-Tiempo: 3 min
+Tiempo: 7 min · Solo navegador (laptop o celular)
 
-1. Antes de abrirlas, predice: ¿qué código crees que responda?
-2. Abre esta URL:
+Cuando pegas una URL en el navegador, haces una petición con el método **GET**: solo lee, no cambia nada.
+
+**Parte A: una URL que ya conoces.**
+
+1. Abre este enlace:
 
 ```
-https://jsonplaceholder.typicode.com/posts/99999
+https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=43s
 ```
 
-3. Abre esta otra:
+2. Léelo por partes:
+
+| Parte | En este enlace | Qué dice |
+| --- | --- | --- |
+| Servidor | `www.youtube.com` | A quién le pides |
+| Ruta (endpoint) | `/watch` | Qué le pides: ver un video |
+| Parámetro `v` | `dQw4w9WgXcQ` | Cuál video |
+| Parámetro `t` | `43s` | En qué segundo empieza |
+
+3. Cambia `t=43s` por `t=0s` y vuelve a abrirlo. Después borra `&t=0s` completo.
+
+**Deberías ver:** el mismo video, empezando en otro momento. El signo `?` abre los parámetros y `&` los separa.
+
+**Parte B: lo que dice un enlace de anuncio.** No lo abras, solo léelo:
 
 ```
-https://pokeapi.co/api/v2/pokemon/noexiste
+https://tienda.ejemplo/tenis?utm_source=facebook&utm_campaign=buen_fin&fbclid=IwAR0x9
 ```
 
-4. En laptop: F12 → pestaña Network para ver el código.
-5. En celular: el código no se ve; el expositor lo muestra en pantalla.
+¿De qué red social viene quien dio clic? ¿De qué campaña? Esos parámetros no cambian la página: le avisan a la tienda de dónde llegaste. Cuando compartes un video desde la app de YouTube pasa igual: el enlace lleva un `si=…` que identifica quién lo compartió.
 
-**Pista para celular:** lee con calma lo que contesta la segunda URL. Algunas APIs también te dicen el código dentro del body.
+**Parte C: lo mismo, en una API.**
 
-**Idea:** un error bien comunicado también es parte del contrato.
+4. Abre esta URL. Ya no es una página: son datos.
 
-(La respuesta está al final, en "Respuestas". No la leas antes de intentar.)
+```
+https://rickandmortyapi.com/api/character/1
+```
 
-## Reto 4 — Mira tus headers
+5. Copia la URL que viene en `image` y ábrela en otra pestaña.
+6. Parámetro de ruta: cambia el `1` por `2`, o por el número que quieras.
+7. Parámetros de consulta: filtra.
 
-Tiempo: 2 min
+```
+https://rickandmortyapi.com/api/character/?name=rick&status=alive
+```
 
-1. Abre esta URL:
+8. Cambia `rick` por `morty`, o `alive` por `dead`.
+
+**Deberías ver:** un personaje distinto por cada número; y con los filtros, una lista `results` solo con los que cumplen.
+
+**Parte D: rómpela.**
+
+9. Antes de abrirla, predice: ¿qué contesta el servidor si pides un personaje que no existe?
+
+```
+https://rickandmortyapi.com/api/character/99999
+```
+
+En laptop: F12 → pestaña Network → recarga, para ver el código de estado.
+
+**Idea:** una URL no es una dirección fija. Es una petición con datos adentro.
+
+(La respuesta de la predicción está al final, en "Respuestas".)
+
+## Reto 2 — Métodos
+
+Tiempo: 10 min · Laptop, con Hoppscotch · Si traes celular, haz equipo con alguien con laptop: tú verificas los cambios con GET desde tu navegador.
+
+| Método | Qué hace | En el restaurante | ¿Lleva body? |
+| --- | --- | --- | --- |
+| **GET** | Leer | Ver la carta | No |
+| **POST** | Crear | Ordenar | Sí |
+| **PUT** | Reemplazar completo | Cambiar toda tu orden | Sí |
+| **PATCH** | Cambiar una parte | Cambiar solo la guarnición | Sí |
+| **DELETE** | Borrar | Cancelar la orden | Normalmente no |
+
+El navegador solo hace GET. Para los demás métodos se usa un cliente de APIs o código. Abre:
+
+```
+https://hoppscotch.io
+```
+
+El método se elige en el menú a la izquierda de la URL. El body se escribe en la pestaña **Body**, con Content Type `application/json`.
+
+Vas a crear tu propio personaje en una API que sí guarda los datos.
+
+**1. POST: créalo.** Método `POST` a esta URL:
+
+```
+https://api.restful-api.dev/objects
+```
+
+con este body (cambia los valores por los tuyos, inventados):
+
+```json
+{
+  "name": "Ana Sánchez",
+  "data": {
+    "especie": "Humana",
+    "planeta": "Tierra",
+    "poder": "Depurar sin dormir"
+  }
+}
+```
+
+**Deberías ver:** tu personaje de regreso, con un `id` que le puso el servidor. **Copia ese `id`.**
+
+**2. GET: compruébalo.** Método `GET` a la misma URL con tu `id` al final. También puedes pegarla en el navegador, o pasársela a tu vecino para que lo vea desde su celular:
+
+```
+https://api.restful-api.dev/objects/TU_ID
+```
+
+**3. PATCH: súbelo de nivel.** Método `PATCH` a la URL con tu `id`, con este body:
+
+```json
+{ "name": "Ana Sánchez, nivel 2" }
+```
+
+Repite el GET del paso 2. **Deberías ver:** el nombre nuevo, y lo demás intacto.
+
+**4. DELETE: bórralo.** Método `DELETE` a la URL con tu `id`, sin body.
+
+**5. GET otra vez.** Predice primero: ¿qué código va a regresar?
+
+**Idea:** misma URL, cuatro métodos, cuatro efectos distintos. La URL dice *a qué*; el método dice *qué hacerle*.
+
+## Reto 3 — Body
+
+Tiempo: 4 min · Laptop, con Hoppscotch
+
+El body son los datos que viajan. Tú lo envías con POST, PUT y PATCH; el servidor te lo regresa en casi todas las respuestas. Casi siempre va en JSON.
+
+**Cómo leer un JSON:** llaves `{ }` = un objeto · cada línea es `"clave": valor` · corchetes `[ ]` = una lista.
+
+1. Repite el POST del Reto 2 para crear otro personaje y copia su `id`.
+2. Predice: si ahora mandas un **PUT** con solo el nombre, ¿qué le pasa a `data`?
+
+```json
+{ "name": "Solo me queda el nombre" }
+```
+
+3. Manda ese PUT a `https://api.restful-api.dev/objects/TU_ID` y revisa la respuesta.
+4. Ahora rompe el body: manda un POST con este JSON, al que le faltan las llaves de cierre.
+
+```
+{ "name": "Ana", "data": { "especie": "Humana"
+```
+
+**Idea:** PATCH cambia solo lo que mandas; PUT reemplaza todo. Y si el body está mal escrito, el servidor no adivina: te dice que pediste mal.
+
+(Respuestas al final.)
+
+## Reto 4 — Headers
+
+Tiempo: 4 min
+
+Los headers son datos sobre la petición. Si el body es el paquete, los headers son la etiqueta.
+
+| Header | Qué dice | Ejemplo |
+| --- | --- | --- |
+| `Content-Type` | En qué formato va el body que te mando | `application/json` |
+| `Accept` | En qué formato quiero la respuesta | `application/json` |
+| `User-Agent` | Qué programa hace la petición | Tu navegador y tu dispositivo |
+| `Authorization` | Quién soy (Reto 5) | `Bearer mi-token-123` |
+
+1. En el navegador (laptop o celular), abre:
 
 ```
 https://httpbin.org/headers
 ```
 
-2. Compara con tu vecino.
+**Deberías ver:** los headers que TU navegador envió sin que lo pidieras. Compara con tu vecino: laptop y celular mandan un `User-Agent` distinto.
 
-**Deberías ver:** un JSON con los headers que TU navegador envió sin que lo pidieras: `User-Agent` (qué dispositivo y navegador usas), `Accept` (qué formatos aceptas), `Host`. Laptop y celular envían un `User-Agent` distinto.
+2. En Hoppscotch, haz un `GET` a esa misma URL, pero antes agrega en la pestaña **Headers** uno tuyo: clave `X-Alumno`, valor tu nombre. Búscalo en la respuesta.
+3. Predice: ¿qué pasa si mandas un body JSON pero dices que es otro formato? Repite el POST del Reto 2 cambiando el Content Type del body a `text/plain`.
 
-**Idea:** los headers son los metadatos de la petición: quién eres, qué formato quieres, con qué permiso vienes.
+**Idea:** el servidor lee primero la etiqueta. Si la etiqueta no coincide con el paquete, lo rechaza sin abrirlo.
 
-## Métodos
+(Respuesta al final.)
 
-| Método | Qué hace | En el restaurante | ¿Lleva body? |
-| --- | --- | --- | --- |
-| GET | Leer | Ver la carta | No |
-| POST | Crear | Ordenar | Sí |
-| PUT | Reemplazar completo | Cambiar toda tu orden | Sí |
-| PATCH | Actualizar una parte | Cambiar solo la guarnición | Sí |
-| DELETE | Borrar | Cancelar la orden | Normalmente no |
+## Reto 5 — Seguridad: ¿quién eres?
 
-**Regla para recordar:** el navegador solo hace GET cuando pegas una URL. Para los demás métodos se usa un cliente de APIs (Hoppscotch, Postman) o código.
+Tiempo: 5 min
 
-## Demo del expositor (solo mira)
-
-> Tiempo: 4 min. Bryan lo hace en pantalla desde:
->
-> `https://hoppscotch.io`
->
-> **Fíjate en tres cosas:**
->
-> 1. Dónde elige el método.
-> 2. Dónde va el header `Content-Type`.
-> 3. Dónde escribe el body y qué código regresa.
->
-> **1. POST** a:
->
-> `https://jsonplaceholder.typicode.com/posts`
->
-> con header `Content-Type: application/json` y body:
->
-> `{"title":"Mi primera integración","body":"Hola FI","userId":1}`
->
-> Resultado: 201 con el recurso creado y un `id`.
->
-> **2. PATCH** a:
->
-> `https://jsonplaceholder.typicode.com/posts/1`
->
-> con body `{"title":"Título corregido"}`. Resultado: 200 con solo ese campo cambiado.
->
-> **3. DELETE** a:
->
-> `https://jsonplaceholder.typicode.com/posts/1`
->
-> Resultado: 200 con `{}`.
->
-> Aclaración: JSONPlaceholder es una API de práctica; simula los cambios pero no los guarda.
-
-## Reto 5 — Autenticación
-
-Tiempo: 4 min
+El header más importante es el que dice quién eres.
 
 1. Predice: ¿qué pasa si le pides algo a una API privada sin identificarte?
-2. Abre esta URL:
+2. Abre esta URL en el navegador:
 
 ```
 https://httpbin.org/bearer
 ```
 
-3. En laptop: F12 → pestaña Network.
-4. En celular: verás una página en blanco o un aviso de error.
-5. Mira cómo el expositor repite la misma petición en Hoppscotch agregando el header `Authorization: Bearer mi-token-123`.
+En laptop: F12 → pestaña Network. En celular verás una página en blanco o un aviso de error.
 
-**Idea:** misma URL, distinto resultado; lo que cambió fue un header.
+3. En Hoppscotch, haz un `GET` a la misma URL agregando este header: clave `Authorization`, valor `Bearer mi-token-123`.
 
-(La respuesta está al final, en "Respuestas".)
+**Idea:** misma URL, distinto resultado; lo único que cambió fue un header.
 
 | Tipo | Cómo viaja | Dónde lo verás |
 | --- | --- | --- |
 | API key | Una llave fija en un header (por ejemplo `X-API-Key`) | APIs públicas de datos, mapas, clima |
-| Basic | Usuario y contraseña codificados en el header `Authorization: Basic …` | Sistemas internos y antiguos |
+| Basic | Usuario y contraseña codificados en `Authorization: Basic …` | Sistemas internos y antiguos |
 | **Bearer token** | Un token temporal en `Authorization: Bearer …` | La mayoría de las APIs modernas |
 | OAuth 2.0 | Un flujo para obtener ese token sin compartir tu contraseña ("Iniciar sesión con Google") | Integraciones entre empresas y apps de terceros |
 
-**Regla de oro:** las credenciales van en headers, nunca en la URL ni en el repositorio.
+**Regla de oro:** las credenciales van en headers, nunca en la URL ni en el repositorio. Ya viste en el Reto 1 cuánto cuenta una URL.
+
+(Respuesta al final.)
 
 ## Reto 6 — Integra dos sistemas con un webhook
 
@@ -310,7 +324,7 @@ Encadena dos APIs a mano: toma la temperatura de Open-Meteo y envíala al webhoo
 - **Header:** metadato de la petición o respuesta (quién eres, qué formato).
 - **Body:** el contenido de los datos que se envían o se reciben.
 - **Método:** la acción que pides: GET, POST, PUT, PATCH, DELETE.
-- **Parámetro:** dato que ajusta lo que pides. De ruta: `/posts/2`. De consulta: `?userId=1`.
+- **Parámetro:** dato que ajusta lo que pides. De ruta: `/character/2`. De consulta: `?name=rick`.
 - **Token:** credencial que demuestra quién eres; viaja en el header `Authorization`.
 - **Webhook:** aviso que un sistema te manda cuando pasa algo, sin que preguntes.
 - **Idempotencia:** que repetir la misma petición no repita el efecto (reintentar un cobro no cobra dos veces).
@@ -327,6 +341,8 @@ Encadena dos APIs a mano: toma la temperatura de Open-Meteo y envíala al webhoo
 ```
 https://httpbin.org/get?nombre=Ana&mensaje=hola
 ```
+
+**Plan B si api.restful-api.dev no responde** (Retos 2 y 3): usa `https://jsonplaceholder.typicode.com/posts` con los mismos métodos. Ojo: esa API simula los cambios pero no los guarda, así que el GET final no mostrará el 404.
 
 **Plan B si httpbin.org no carga** (Retos 4 y 5): cambia `httpbin.org` por `httpbingo.org` en la misma URL. Las rutas `/headers`, `/bearer` y `/get` funcionan igual.
 
@@ -350,18 +366,18 @@ Si puedes contestar estas siete preguntas sin ver la guía, ya dominas lo de hoy
 
 Hoy usaste el navegador. En un trabajo real, estas mismas peticiones las hace un programa. Tres formas de dar ese paso, de la más fácil a la más útil.
 
-**1. Sin instalar nada (laptop).** Con la pestaña del Reto 1 abierta, presiona F12, entra a Console y pega esto. Si Chrome te lo pide, escribe antes `allow pasting`.
+**1. Sin instalar nada (laptop).** Con cualquier pestaña del Reto 1 abierta, presiona F12, entra a Console y pega esto. Si Chrome te lo pide, escribe antes `allow pasting`.
 
 ```js
-fetch("https://jsonplaceholder.typicode.com/posts/1")
+fetch("https://rickandmortyapi.com/api/character/1")
   .then(r => r.json())
   .then(console.log)
 ```
 
-**2. En la terminal, con curl.** La opción `-i` muestra el código de estado y los headers: todo lo de "Lo que acabas de hacer", en texto.
+**2. En la terminal, con curl.** La opción `-i` muestra el código de estado y los headers de la respuesta, en texto.
 
 ```bash
-curl -i https://jsonplaceholder.typicode.com/posts/1
+curl -i https://rickandmortyapi.com/api/character/1
 ```
 
 ```bash
@@ -411,14 +427,20 @@ print(aviso.status_code)
 
 ## Respuestas — no leas esto antes de intentar
 
-**Reto 3:** 404. El servidor sí contestó, pero ese recurso no existe ("ese platillo no existe").
+**Reto 1:** 404, con el body `{"error":"Character not found"}`. El servidor sí contestó, pero ese recurso no existe ("ese platillo no existe").
+
+**Reto 2:** el último GET regresa 404: lo borraste de verdad. (Al crear, esta API contesta 200; muchas otras contestan 201, "creado".)
+
+**Reto 3:** con el PUT, `data` queda en `null`: PUT reemplaza el recurso completo y tú solo mandaste el nombre. El body roto regresa 400, "pediste mal".
+
+**Reto 4:** 415, "no entiendo ese formato". El body era JSON válido, pero la etiqueta decía otra cosa.
 
 **Reto 5:** sin token, 401; con el header `Authorization: Bearer mi-token-123`, 200 con `"authenticated": true`.
 
 **Comprueba lo que aprendiste:**
 
 1. Una API es el contrato para pedirle algo a un sistema. Una integración son dos o más sistemas trabajando juntos usando esos contratos.
-2. El de ruta identifica un recurso (`/posts/2`). El de consulta filtra o ajusta la respuesta (`?userId=1`).
+2. El de ruta identifica un recurso (`/character/2`). El de consulta filtra o ajusta la respuesta (`?name=rick`).
 3. 401: no te identificaste. 403: te identificaste, pero no tienes permiso. 404: eso no existe. En un 4xx el error está en tu petición; en un 5xx, en el servidor.
 4. PUT reemplaza el recurso completo. PATCH cambia solo los campos que mandas.
 5. En la API tú preguntas cuando quieres. En el webhook dejas tu URL y el otro sistema te avisa cuando pasa algo.

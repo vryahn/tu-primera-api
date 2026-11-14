@@ -8,13 +8,13 @@ Expositor: Bryan Rodríguez Abarca, Technical Product Manager.
 
 | Archivo | Para qué sirve |
 | --- | --- |
-| [guia-de-actividad.md](guia-de-actividad.md) | Los 6 retos paso a paso, con las URLs listas para copiar, glosario, preguntas de repaso y respuestas. |
-| [slides.pdf](slides.pdf) | Las 22 láminas de la clase. |
+| [guia-de-actividad.md](guia-de-actividad.md) | Los 6 retos paso a paso (URL y parámetros, métodos, body, headers, seguridad, webhook), con las URLs listas para copiar, glosario, preguntas de repaso y respuestas. |
+| [slides.pdf](slides.pdf) | Las 15 láminas de la clase. |
 | [integracion.py](integracion.py) | El reto para casa hecho en código: lee el clima de una API y le avisa a otro sistema con un webhook. |
 
 ## Durante la clase
 
-Abre la [guía de actividad](guia-de-actividad.md) en tu laptop o celular. Solo necesitas un navegador: no instales nada ni crees cuentas.
+Abre la [guía de actividad](guia-de-actividad.md) en tu laptop o celular. Trae laptop: los retos 2 a 5 se hacen en [Hoppscotch](https://hoppscotch.io), desde el navegador. No instales nada ni crees cuentas. Con celular puedes hacer el Reto 1 y verificar con GET lo que haga tu equipo.
 
 ## Después de la clase
 
